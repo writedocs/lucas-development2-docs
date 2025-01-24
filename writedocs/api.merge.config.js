@@ -62,7 +62,9 @@ const processDirectory = (dirPath, isApiPagesDir = true) => {
           const remainingContent = apiMdxContent.slice(
             endpointIndex + "</MethodEndpoint>".length
           );
-          const nextTagMatch = remainingContent.match(/<[A-Za-z]/);
+          const nextTagMatch = remainingContent.match(
+            /<(ParamsDetails|RequestSchema|StatusCodes|OperationTabs|TabItem|Heading)[^>]*>/
+          );
           const nextTagIndex = nextTagMatch ? nextTagMatch.index : -1;
 
           // Create the new content by combining the parts
