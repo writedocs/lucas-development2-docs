@@ -136,15 +136,15 @@ function createOpenApiConfig() {
         ? `${relativePath}-${fileName}`
         : fileName;
 
-    if (configurations.proxy || planConfig.proxy) {
+    if (configurations.proxy === false || planConfig.proxy === false) {
       acc[keyName] = {
         specPath,
-        proxy: proxyUrl,
         outputDir,
       };
     } else {
       acc[keyName] = {
         specPath,
+        proxy: proxyUrl,
         outputDir,
       };
     }
