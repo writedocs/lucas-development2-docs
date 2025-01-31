@@ -29,6 +29,7 @@ function LogoThemedImage({ logo, alt, imageClassName }) {
     themedImage
   );
 }
+
 export default function Logo(props) {
   const {
     siteConfig: { title },
@@ -36,33 +37,40 @@ export default function Logo(props) {
   const {
     navbar: { title: navbarTitle, logo },
   } = useThemeConfig();
+  const { i18n } = useDocusaurusContext();
   const { imageClassName, titleClassName, ...propsRest } = props;
+  const { colorMode } = useColorMode();
+
+  const currentLocale = i18n.currentLocale; // Get the current language
   const logoLink = useBaseUrl(logo?.href || "/");
+
   // If visible title is shown, fallback alt text should be
   // an empty string to mark the logo as decorative.
   const fallbackAlt = navbarTitle ? "" : title;
-  // Use logo alt text if provided (including empty string),
-  // and provide a sensible fallback otherwise.
   const alt = logo?.alt ?? fallbackAlt;
-  
-  const hasHomepage =
-  configurations.homepage.endsWith(".html") ||
-  configurations.homepage.endsWith(".jsx") ||
-  configurations.homepage.endsWith(".js");
-  
-  
-  const { colorMode } = useColorMode();
-  const [imageSrc, setImageSrc] = useState(logo);
 
-  const srcDark = {
-    ...logo,
-    src: configurations.images.darkLogo
-  }
+  const hasHomepage =
+    configurations.homepage.endsWith(".html") ||
+    configurations.homepage.endsWith(".jsx") ||
+    configurations.homepage.endsWith(".js");
+
+  // Get logo based on the current locale (fallback to default if missing)
+  const localeImages =
+    configurations.images[currentLocale] || configurations.images;
+  const defaultLogo = localeImages.logo;
+  const darkLogo = localeImages.darkLogo || defaultLogo; // Dark mode fallback
+
+  const [imageSrc, setImageSrc] = useState({
+    src: defaultLogo,
+    srcDark: darkLogo,
+  });
 
   useEffect(() => {
-    setImageSrc(colorMode === "dark" && srcDark.src ? srcDark : logo);
-  }, [colorMode])
-  
+    setImageSrc(
+      colorMode === "dark" ? { src: darkLogo } : { src: defaultLogo }
+    );
+  }, [colorMode, currentLocale]);
+
   if (configurations.homepage && hasHomepage) {
     return (
       <Link
