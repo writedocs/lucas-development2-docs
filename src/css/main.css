@@ -61,13 +61,13 @@ html {
 }
 
 @media (max-width: 1440px) and (min-width: 996px) {
-  .main-wrapper {
+  .main-wrapper [class^="docsWrapper_"] {
     padding-left: 1.3rem;
     padding-right: 1.3rem;
   }
 }
 @media (min-width: 1441px) {
-  .main-wrapper {
+  .main-wrapper [class^="docsWrapper_"] {
     align-self: center;
     max-width: var(--screen-width-max);
     width: var(--screen-width-max);
