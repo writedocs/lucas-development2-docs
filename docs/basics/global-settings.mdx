@@ -4,14 +4,11 @@ slug: /global-settings
 description: Learn how to customize and structure your documentation. 
 ---
 
+import { Accordion, AccordionGroup, Callout, Card, CardList, Image, Video, TabItem, Tabs } from "@site/src/components";
 
-import {Card, CardList, Accordion, AccordionGroup, Callout, Image, Video, Tabs, TabItem} from "@site/src/components";
-
-
-Every WriteDocs documentation site requires a **`config.json`** file to handle the essential configuration settings. Explore the available attributes below to get started.
+Every WriteDocs documentation site requires a **`config.json`** file to handle the oi essential configuration settings. Explore the available attributes below to get started.
 
 If you prefer to learn by example and then reference the attributes as needed for a deeper understanding, check out this [full example](#full-example).
-
 
 ## General
 <strong>websiteName</strong> <small className="small_tag"><code>string</code></small> <small className="required_tag"><code>required</code></small>
@@ -86,7 +83,6 @@ If you prefer to learn by example and then reference the attributes as needed fo
   <br/>Enables or disables pagination for the documentation pages. When enabled, users can navigate through sections of the page using pagination controls. Default: `false`. 
   </li>
 </ul>
-
 
 ```json
 {
@@ -217,7 +213,6 @@ The objects inside this array will be composed of the following attributes:
     <br/>The button name to be shown in the documentation.
   </li>
 </ul>
-
 
 ## Sidebars
 <strong>sidebars</strong> <small className="small_tag"><code>array of objects</code></small> <small className="required_tag"><code>required</code></small>
