@@ -35,8 +35,8 @@
         {
           "categoryName": "Getting Started",
           "pages": [
-            "getting-started/introduction",
-            "getting-started/local-development"
+            "getting-started/local-development",
+            "getting-started/introduction"
           ]
         },
         {
@@ -48,8 +48,8 @@
               "groupName": "Page Templates",
               "subpages": [
                 "basics/page-templates/api-introduction",
-                "basics/page-templates/environments",
-                "basics/page-templates/authentication"
+                "basics/page-templates/authentication",
+                "basics/page-templates/environments"
               ]
             }
           ]
