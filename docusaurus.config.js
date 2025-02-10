@@ -24,6 +24,7 @@ const planConfig = getJson("plan.json");
 
 function retrieveCustomDomain() {
   try {
+    if (process.env.URL) return process.env.URL;
     const customDomain = process.env.CUSTOM_DOMAIN;
     if (!customDomain) return "https://docs.writedocs.io";
     return `https://${customDomain}`;
@@ -43,7 +44,7 @@ function loadGtag() {
         },
       };
     }
-    if (configurations.integrations.gtag) {
+    if (configurations.integrations?.gtag) {
       return {
         gtag: {
           trackingID: configurations.integrations.gtag,
@@ -51,7 +52,32 @@ function loadGtag() {
         },
       };
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("[GTAG] Error loading GTAG");
+  }
+}
+
+function loadGoogleTagManager() {
+  try {
+    const containerId = process.env.GOOGLE_TAG_MANAGER_ID;
+    if (containerId) {
+      return {
+        googleTagManager: {
+          containerId: containerId,
+        },
+      };
+    }
+    if (configurations.integrations?.googleTagManager) {
+      return {
+        googleTagManager: {
+          containerId: configurations.integrations.googleTagManager,
+        },
+      };
+    }
+  } catch (error) {
+    console.error("[GOOGLE_TAG_MANAGER] Error loading GoogleTagManager");
+    console.log(error);
+  }
 }
 
 function getFirstPageFromJson(sectionName) {
@@ -336,6 +362,7 @@ const config = {
           customCss: "./src/css/custom.css",
         },
         ...loadGtag(),
+        ...loadGoogleTagManager(),
       }),
     ],
   ],
