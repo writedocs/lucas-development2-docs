@@ -223,7 +223,7 @@
 .openapi-explorer__details-container > .openapi-explorer__form-item::after {
   content: "Edit";
   position: absolute;
-  top: 24px;
+  bottom: 8px;
   font-family: var(--font-main);
   font-size: var(--font-size-medium-small);
   right: calc(var(--ifm-pre-padding) / 2);
@@ -317,4 +317,8 @@
 
 .tabs.openapi-tabs__code-list-container {
   scrollbar-width: thin;
+}
+
+.openapi-tabs__schema-container .openapi-tabs__schema-tabs-container ul {
+  margin-bottom: 0 !important;
 }
